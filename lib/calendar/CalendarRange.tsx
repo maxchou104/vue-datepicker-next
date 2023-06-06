@@ -86,6 +86,7 @@ function CalendarRange(originalProps: CalendarRangeProps) {
   });
 
   const updateCalendars = (dates: DateRange, index?: 0 | 1) => {
+    console.log('aaa', dates);
     const diff = diffCalendarMonths(dates[0], dates[1]);
     const gap = calendarMinDiff.value - diff;
     if (gap > 0) {
@@ -100,9 +101,11 @@ function CalendarRange(originalProps: CalendarRangeProps) {
   };
 
   const updateCalendarStart = (date: Date) => {
+    console.log('start', date);
     updateCalendars([date, calendars.value[1]], 0);
   };
   const updateCalendarEnd = (date: Date) => {
+    console.log('end', date);
     updateCalendars([calendars.value[0], date], 1);
   };
 
@@ -135,24 +138,42 @@ function CalendarRange(originalProps: CalendarRangeProps) {
   };
 
   return () => {
-    const calendarRange = calendars.value.map((calendar, index) => {
+    if (props.dual) {
+      const calendarRange = calendars.value.map((calendar, index) => {
+        const calendarProps = {
+          ...props,
+          calendar,
+          value: innerValue.value,
+          defaultValue: defaultValues.value[index],
+          getClasses: getRangeClasses,
+          // don't update when range is true
+          partialUpdate: false,
+          multiple: false,
+          ['onUpdate:value']: handlePick,
+          onCalendarChange: index === 0 ? updateCalendarStart : updateCalendarEnd,
+          onDateMouseLeave: handleMouseLeave,
+          onDateMouseEnter: handleMouseEnter,
+        };
+        return <Calendar {...calendarProps}></Calendar>;
+      });
+      return <div class={`${prefixClass}-calendar-range`}>{calendarRange}</div>;
+    } else {
       const calendarProps = {
         ...props,
-        calendar,
+        calendar: calendars.value[0],
         value: innerValue.value,
-        defaultValue: defaultValues.value[index],
+        defaultValue: defaultValues.value[0],
         getClasses: getRangeClasses,
         // don't update when range is true
         partialUpdate: false,
         multiple: false,
         ['onUpdate:value']: handlePick,
-        onCalendarChange: index === 0 ? updateCalendarStart : updateCalendarEnd,
+        onCalendarChange: updateCalendarStart,
         onDateMouseLeave: handleMouseLeave,
         onDateMouseEnter: handleMouseEnter,
       };
       return <Calendar {...calendarProps}></Calendar>;
-    });
-    return <div class={`${prefixClass}-calendar-range`}>{calendarRange}</div>;
+    }
   };
 }
 

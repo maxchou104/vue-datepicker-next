@@ -26,6 +26,7 @@ export interface CalendarProps {
   partialUpdate?: boolean; // update date when select year or month
   showWeekNumber?: boolean;
   titleFormat?: string;
+  dual?: boolean;
   getYearPanel?: () => number[][];
   onDateMouseEnter?: (value: Date) => void;
   onDateMouseLeave?: (value: Date) => void;
@@ -235,6 +236,7 @@ export const calendarProps = keys<CalendarProps>()([
   'onPanelChange',
   'onUpdate:value',
   'onPick',
+  'dual',
 ]);
 
 export default defineVueComponent(Calendar, calendarProps);

@@ -16,6 +16,7 @@ export interface PickerInputBaseProps {
   range?: boolean;
   multiple?: boolean;
   separator?: string;
+  dual?: boolean;
   renderInputText?: (v: Date | Date[]) => string;
   onInputError?: (text: string) => void;
   onClear?: () => void;
@@ -181,6 +182,7 @@ export const pickerInputBaseProps = keys<PickerInputBaseProps>()([
   'renderInputText',
   'onInputError',
   'onClear',
+  'dual',
 ]);
 
 const pickerInputProps = keys<PickerInputProps>()([

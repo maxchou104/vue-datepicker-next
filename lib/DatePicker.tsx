@@ -15,6 +15,7 @@ type DatePickerProps = Assign<DateTimeProps, PickerProps>;
 
 type DatePickerRangeProps = {
   range: true;
+  dual: true;
 } & Assign<DateTimeRangeProps, PickerProps>;
 
 export type DatePickerComponentProps = DatePickerProps | DatePickerRangeProps;
@@ -36,6 +37,7 @@ const booleanKeys = keys<PickByValueExact<Required<DatePickerComponentProps>, bo
   'showTimePanel',
   'showWeekNumber',
   'use12h',
+  'dual',
 ]);
 
 const formatMap = {

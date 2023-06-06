@@ -13,6 +13,7 @@ describe('CalendarRange', () => {
     wrapper = mount(CalendarRange, {
       props: {
         value: [new Date(2019, 9, 30), new Date(2019, 10, 2)],
+        dual: true,
       },
     });
     const activeTds = wrapper.findAll('.mx-table-date .active:not(.not-current-month)');
@@ -31,6 +32,7 @@ describe('CalendarRange', () => {
       props: {
         defaultValue: new Date(2019, 9, 1),
         ['onUpdate:value']: mockFn,
+        dual: true,
       },
     });
     const tds = wrapper.findAll('.mx-table-date td');
@@ -44,6 +46,7 @@ describe('CalendarRange', () => {
     wrapper = mount(CalendarRange, {
       props: {
         defaultValue: new Date(2019, 6, 1),
+        dual: true,
       },
     });
     const firstRightIcon = wrapper.find('.mx-calendar-panel-date .mx-btn-icon-right');
@@ -64,6 +67,7 @@ describe('CalendarRange', () => {
     wrapper = mount(CalendarRange, {
       props: {
         partialUpdate: true,
+        dual: true,
       },
     });
     const [start, end] = wrapper.findAllComponents(Calendar);
@@ -75,6 +79,7 @@ describe('CalendarRange', () => {
     wrapper = mount(CalendarRange, {
       props: {
         defaultValue: [new Date(2019, 9, 1), new Date(2019, 11, 1)],
+        dual: true,
       },
     });
     const firstCell = wrapper.find('.mx-calendar-panel-date td');
