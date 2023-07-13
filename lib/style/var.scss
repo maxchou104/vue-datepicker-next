@@ -2,6 +2,9 @@ $namespace: 'mx' !default;
 
 $default-color: #73879c !default;
 $primary-color: #1284e7 !default;
+$active-background-color: #409eff !default;
+$in-range-color: #606266 !default;
+$in-range-background-color: #f2f6fc !default;
 
 $today-color: mix(#fff, $primary-color, 10%) !default;
 
@@ -17,13 +20,13 @@ $disabled-background-color: #f3f3f3 !default;
 $border-color: #e8e8e8 !default;
 
 $calendar-active-color: #fff !default;
-$calendar-active-background-color: $primary-color !default;
+$calendar-active-background-color: $active-background-color !default;
 
 $calendar-hover-color: $default-color !default;
 $calendar-hover-background-color: mix(#fff, $calendar-active-background-color, 95%) !default;
 
-$calendar-in-range-color: $default-color !default;
-$calendar-in-range-background-color: mix(#fff, $calendar-active-background-color, 85%) !default;
+$calendar-in-range-color: $in-range-color !default;
+$calendar-in-range-background-color: $in-range-background-color !default;
 
 $time-active-color: $primary-color !default;
 $time-active-background-color: transparent !default;

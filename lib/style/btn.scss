@@ -18,6 +18,9 @@
     border-color: $primary-color;
     color: $primary-color;
   }
+  &:disabled {
+    cursor: default;
+  }
 }
 
 .#{$namespace}-btn-text {

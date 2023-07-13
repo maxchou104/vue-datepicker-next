@@ -190,7 +190,7 @@
 
 .#{$namespace}-calendar-content {
   position: relative;
-  height: 224px;
+  height: auto;
   box-sizing: border-box;
   .cell {
     cursor: pointer;
@@ -201,6 +201,11 @@
     &.active {
       color: $calendar-active-color;
       background-color: $calendar-active-background-color;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 4px solid #fff;
+      font-weight: bold;
     }
     &.in-range,
     &.hover-in-range {
@@ -244,7 +249,7 @@
 .#{$namespace}-table {
   table-layout: fixed;
   border-collapse: separate;
-  border-spacing: 0;
+  border-spacing: 0 4px;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
@@ -272,7 +277,7 @@
     color: $today-color;
   }
   .cell.not-current-month {
-    color: #ccc;
+    color: #c0c4cc;
     background: none; // cover the in-range style
   }
 }
