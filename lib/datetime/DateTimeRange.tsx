@@ -13,6 +13,7 @@ export type DateTimeRangeProps = DateTimeBaseProps & TimeRangeProps & CalendarRa
 function DateTimeRange(originalProps: DateTimeRangeProps) {
   const props = withDefault(originalProps, {
     defaultValue: startOfDay(new Date()),
+    disableButton: false,
     disabledTime: () => false,
   });
 

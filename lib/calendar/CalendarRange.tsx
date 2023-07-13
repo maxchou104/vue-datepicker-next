@@ -1,10 +1,10 @@
 import { computed, ref, watchEffect } from 'vue';
 import { usePrefixClass } from '../context';
 import {
-  diffCalendarMonths,
+  // diffCalendarMonths,
   isValidDate,
   isValidRangeDate,
-  setMonth,
+  // setMonth,
   startOfDay,
 } from '../util/date';
 import Calendar, { CalendarProps, calendarProps } from './Calendar';
@@ -37,6 +37,7 @@ const inRange = (date: Date, range: DateRange) => {
 function CalendarRange(originalProps: CalendarRangeProps) {
   const props = withDefault(originalProps, {
     defaultValue: new Date(),
+    disableButton: false,
     type: 'date' as PickerType,
   });
 
@@ -79,33 +80,31 @@ function CalendarRange(originalProps: CalendarRangeProps) {
     return isValidRangeDate(props.calendar) ? props.calendar : defaultCalendars.value;
   });
 
-  const calendarMinDiff = computed(() => {
-    if (props.type === 'year') return 10 * 12; // type:year  min 10 year
-    if (props.type === 'month') return 1 * 12; //type:month min 1 year
-    return 1; // type:date  min 1 month
-  });
+  // const calendarMinDiff = computed(() => {
+  //   if (props.type === 'year') return 10 * 12; // type:year  min 10 year
+  //   if (props.type === 'month') return 1 * 12; //type:month min 1 year
+  //   return 1; // type:date  min 1 month
+  // });
 
   const updateCalendars = (dates: DateRange, index?: 0 | 1) => {
-    console.log('aaa', dates);
-    const diff = diffCalendarMonths(dates[0], dates[1]);
-    const gap = calendarMinDiff.value - diff;
-    if (gap > 0) {
-      const anotherIndex = index === 1 ? 0 : 1;
-      dates[anotherIndex] = setMonth(
-        dates[anotherIndex],
-        (v) => v + (anotherIndex === 0 ? -gap : gap)
-      );
-    }
+    // const diff = diffCalendarMonths(dates[0], dates[1]);
+    // const gap = calendarMinDiff.value - diff;
+    // debugger;
+    // if (gap > 0) {
+    //   const anotherIndex = index === 1 ? 0 : 1;
+    //   dates[anotherIndex] = setMonth(
+    //     dates[anotherIndex],
+    //     (v) => v + (anotherIndex === 0 ? -gap : gap)
+    //   );
+    // }
     defaultCalendars.value = dates;
     props.onCalendarChange?.(dates, index);
   };
 
   const updateCalendarStart = (date: Date) => {
-    console.log('start', date);
     updateCalendars([date, calendars.value[1]], 0);
   };
   const updateCalendarEnd = (date: Date) => {
-    console.log('end', date);
     updateCalendars([calendars.value[0], date], 1);
   };
 

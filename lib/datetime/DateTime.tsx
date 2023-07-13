@@ -17,6 +17,7 @@ export type DateTimeProps = DateTimeBaseProps & CalendarProps & TimePanelProps;
 function DateTime(originalProps: DateTimeProps) {
   const props = withDefault(originalProps, {
     disabledTime: () => false,
+    disableButton: false,
     defaultValue: startOfDay(new Date()),
   });
 

@@ -27,6 +27,7 @@ export interface CalendarProps {
   showWeekNumber?: boolean;
   titleFormat?: string;
   dual?: boolean;
+  disableButton?: boolean;
   getYearPanel?: () => number[][];
   onDateMouseEnter?: (value: Date) => void;
   onDateMouseLeave?: (value: Date) => void;
@@ -40,6 +41,7 @@ function Calendar(originalProps: CalendarProps) {
   const props = withDefault(originalProps, {
     defaultValue: startOfDay(new Date()),
     type: 'date' as PickerType,
+    disableButton: false,
     disabledDate: () => false,
     getClasses: () => [],
     titleFormat: 'YYYY-MM-DD',
@@ -181,6 +183,7 @@ function Calendar(originalProps: CalendarProps) {
       return (
         <TableYear
           calendar={innerCalendar.value}
+          disableButton={props.disableButton}
           getCellClasses={getYearClasses}
           getYearPanel={props.getYearPanel}
           onSelect={handleSelectYear}
@@ -192,6 +195,7 @@ function Calendar(originalProps: CalendarProps) {
       return (
         <TableMonth
           calendar={innerCalendar.value}
+          disableButton={props.disableButton}
           getCellClasses={getMonthClasses}
           onSelect={handleSelectMonth}
           onUpdatePanel={handelPanelChange}
@@ -205,6 +209,7 @@ function Calendar(originalProps: CalendarProps) {
         showWeekNumber={props.showWeekNumber}
         titleFormat={props.titleFormat}
         calendar={innerCalendar.value}
+        disableButton={props.disableButton}
         getCellClasses={getDateClasses}
         getWeekActive={getWeekActive}
         onSelect={handleSelectDate}
@@ -237,6 +242,7 @@ export const calendarProps = keys<CalendarProps>()([
   'onUpdate:value',
   'onPick',
   'dual',
+  'disableButton',
 ]);
 
 export default defineVueComponent(Calendar, calendarProps);

@@ -59,6 +59,7 @@ function TimePanel(originalProps: TimePanelProps) {
     timeTitleFormat: 'YYYY-MM-DD',
     disabledTime: () => false,
     scrollDuration: 100,
+    disableButton: false,
   });
   const prefixClass = usePrefixClass();
   const locale = useLocale();

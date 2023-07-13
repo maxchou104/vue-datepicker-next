@@ -5,11 +5,12 @@ import { usePrefixClass } from '../context';
 export interface TableHeaderProps {
   type: 'date' | 'month' | 'year';
   calendar: Date;
+  disableButton: boolean;
   onUpdateCalendar: (value: Date) => void;
 }
 
 export function TableHeader(
-  { type, calendar, onUpdateCalendar }: TableHeaderProps,
+  { type, calendar, disableButton, onUpdateCalendar }: TableHeaderProps,
   { slots }: SetupContext
 ) {
   const prefixClass = usePrefixClass();
@@ -37,16 +38,20 @@ export function TableHeader(
 
   return (
     <div class={`${prefixClass}-calendar-header`}>
-      <ButtonIcon
-        value="double-left"
-        onClick={type === 'year' ? lastDecade : lastYear}
-      ></ButtonIcon>
-      {type === 'date' && <ButtonIcon value="left" onClick={lastMonth}></ButtonIcon>}
-      <ButtonIcon
-        value="double-right"
-        onClick={type === 'year' ? nextDecade : nextYear}
-      ></ButtonIcon>
-      {type === 'date' && <ButtonIcon value="right" onClick={nextMonth}></ButtonIcon>}
+      {!disableButton && (
+        <div>
+          <ButtonIcon
+            value="double-left"
+            onClick={type === 'year' ? lastDecade : lastYear}
+          ></ButtonIcon>
+          {type === 'date' && <ButtonIcon value="left" onClick={lastMonth}></ButtonIcon>}
+          <ButtonIcon
+            value="double-right"
+            onClick={type === 'year' ? nextDecade : nextYear}
+          ></ButtonIcon>
+          {type === 'date' && <ButtonIcon value="right" onClick={nextMonth}></ButtonIcon>}
+        </div>
+      )}
       <span class={`${prefixClass}-calendar-header-label`}>{slots.default?.()}</span>
     </div>
   );

@@ -9,6 +9,7 @@ export interface TableDateProps extends Omit<TableHeaderProps, 'type'> {
   showWeekNumber?: boolean;
   isWeekMode: boolean;
   titleFormat: string;
+  disableButton: boolean;
   getWeekActive: (value: Date[]) => boolean;
   getCellClasses: (value: Date) => string[] | string;
   onSelect: (value: Date) => void;
@@ -22,6 +23,7 @@ export function TableDate({
   isWeekMode,
   showWeekNumber,
   titleFormat,
+  disableButton,
   getWeekActive,
   getCellClasses,
   onSelect,
@@ -50,6 +52,7 @@ export function TableDate({
   };
 
   const handlePanelChange = (panel: 'year' | 'month') => {
+    if (disableButton) return;
     onUpdatePanel(panel);
   };
 
@@ -79,6 +82,7 @@ export function TableDate({
   const yearLabel = (
     <button
       type="button"
+      disabled={disableButton}
       class={`${prefixClass}-btn ${prefixClass}-btn-text ${prefixClass}-btn-current-year`}
       onClick={() => handlePanelChange('year')}
     >
@@ -89,6 +93,7 @@ export function TableDate({
   const monthLabel = (
     <button
       type="button"
+      disabled={disableButton}
       class={`${prefixClass}-btn ${prefixClass}-btn-text ${prefixClass}-btn-current-month`}
       onClick={() => handlePanelChange('month')}
     >
@@ -105,7 +110,12 @@ export function TableDate({
         { [`${prefixClass}-calendar-week-mode`]: isWeekMode },
       ]}
     >
-      <TableHeader type="date" calendar={calendar} onUpdateCalendar={onUpdateCalendar}>
+      <TableHeader
+        type="date"
+        calendar={calendar}
+        disableButton={disableButton}
+        onUpdateCalendar={onUpdateCalendar}
+      >
         {monthBeforeYear ? [monthLabel, yearLabel] : [yearLabel, monthLabel]}
       </TableHeader>
       <div class={`${prefixClass}-calendar-content`}>

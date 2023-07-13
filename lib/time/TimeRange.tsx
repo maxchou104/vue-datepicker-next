@@ -15,6 +15,7 @@ function TimeRange(originalProps: TimeRangeProps) {
   const props = withDefault(originalProps, {
     defaultValue: startOfDay(new Date()),
     disabledTime: () => false,
+    disableButton: false,
   });
 
   const prefixClass = usePrefixClass();

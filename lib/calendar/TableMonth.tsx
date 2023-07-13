@@ -11,6 +11,7 @@ export interface TableMonthProps extends Omit<TableHeaderProps, 'type'> {
 
 export function TableMonth({
   calendar,
+  disableButton,
   getCellClasses,
   onSelect,
   onUpdateCalendar,
@@ -32,7 +33,12 @@ export function TableMonth({
 
   return (
     <div class={`${prefixClass}-calendar ${prefixClass}-calendar-panel-month`}>
-      <TableHeader type="month" calendar={calendar} onUpdateCalendar={onUpdateCalendar}>
+      <TableHeader
+        type="month"
+        calendar={calendar}
+        disableButton={disableButton}
+        onUpdateCalendar={onUpdateCalendar}
+      >
         <button
           type="button"
           class={`${prefixClass}-btn ${prefixClass}-btn-text ${prefixClass}-btn-current-year`}

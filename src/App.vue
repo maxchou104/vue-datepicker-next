@@ -49,6 +49,9 @@ export default defineComponent({
     handleUpdate(val: Date) {
       this.value = val;
     },
+    test(date: Date) {
+      console.log(date);
+    },
   },
 });
 </script>
@@ -61,7 +64,7 @@ export default defineComponent({
       v-bind="inputProps"
       :clearable="false"
       :append-to-body="append"
-      type="datetime"
+      type="date"
       :time-picker-options="{ start: '00:00', end: '09:00', step: '00:30' }"
       :disabled-date="(date) => date < new Date(2021, 10, 9)"
       :open="true"
@@ -69,9 +72,12 @@ export default defineComponent({
     <DatePicker
       v-model:value="rangeValue"
       :append-to-body="false"
+      :disable-button="true"
       range
-      :shortcuts="shortcuts"
+      confirm
+      confirm-text="確定"
       :editable="false"
+      @calendar-change="test"
     ></DatePicker>
   </div>
 </template>

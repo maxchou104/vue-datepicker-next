@@ -19,6 +19,7 @@ const getDefaultYears = (calendar: Date) => {
 
 export function TableYear({
   calendar,
+  disableButton,
   getCellClasses = () => [],
   getYearPanel = getDefaultYears,
   onSelect,
@@ -42,7 +43,12 @@ export function TableYear({
 
   return (
     <div class={`${prefixClass}-calendar ${prefixClass}-calendar-panel-year`}>
-      <TableHeader type="year" calendar={calendar} onUpdateCalendar={onUpdateCalendar}>
+      <TableHeader
+        type="year"
+        calendar={calendar}
+        disableButton={disableButton}
+        onUpdateCalendar={onUpdateCalendar}
+      >
         <span>{firstYear}</span>
         <span class={`${prefixClass}-calendar-decade-separator`}></span>
         <span>{lastYear}</span>
